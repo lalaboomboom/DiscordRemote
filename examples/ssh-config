@@ -1,0 +1,9 @@
+# Add this entry to the coordinator user's SSH config after you edit it.
+# Replace the host, user and key path with your own values.
+Host gpu-server
+    HostName gpu.example.net
+    User alice
+    Port 22
+    IdentityFile ~/.ssh/id_ed25519
+    IdentitiesOnly yes
+    StrictHostKeyChecking yes

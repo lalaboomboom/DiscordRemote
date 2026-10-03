@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "hosts": [
+    {
+      "id": "local",
+      "label": "Linux workstation",
+      "kind": "local",
+      "platform": "linux",
+      "cwd": "/srv/projects/demo"
+    },
+    {
+      "id": "gpu-server",
+      "label": "GPU server",
+      "kind": "ssh",
+      "platform": "linux",
+      "host": "gpu-server",
+      "user": "alice",
+      "port": 22,
+      "cwd": "/srv/projects/demo"
+    }
+  ]
+}

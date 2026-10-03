@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "hosts": [
+    {
+      "id": "local",
+      "label": "Windows workstation",
+      "kind": "local",
+      "platform": "win32",
+      "cwd": "C:\\Projects\\Demo"
+    },
+    {
+      "id": "gpu-server",
+      "label": "GPU server",
+      "kind": "ssh",
+      "platform": "linux",
+      "host": "gpu-server",
+      "user": "alice",
+      "port": 22,
+      "cwd": "/srv/projects/demo"
+    }
+  ]
+}

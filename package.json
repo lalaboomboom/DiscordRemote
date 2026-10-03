@@ -1,0 +1,43 @@
+{
+  "name": "discordremote",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Control local and remote terminal sessions through a private Discord bot.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "npm run build && node --test dist/test/discord-bridge.test.js dist/test/vscode-bridge.test.js dist/test/platform.test.js dist/test/pty-input.test.js dist/test/terminal-lifecycle.test.js dist/test/agent.test.js dist/test/ssh-password.test.js dist/test/host-probe.test.js dist/test/agent-tunnel.test.js dist/test/agent-vscode.test.js dist/test/existing-terminal.test.js dist/test/attachment-target.test.js dist/test/channel-routing.test.js dist/test/terminal-directory.test.js dist/test/directory-history.test.js dist/test/directory-choices.test.js dist/test/terminal-channel-create.test.js dist/test/codex-events.test.js dist/test/codex-events-transport.test.js dist/test/notifications.test.js",
+    "test:discord": "npm test",
+    "test:pty": "npm run build && node scripts/run-live-tests.mjs pty",
+    "test:agent": "npm run build && node scripts/run-live-tests.mjs agent",
+    "discord:build": "npm run build",
+    "discord:typecheck": "npm run typecheck",
+    "discord:check": "node dist/apps/discord/main.js --check",
+    "discord:start": "node dist/apps/discord/main.js",
+    "discord:up": "node dist/apps/discord/control.js start",
+    "discord:down": "node dist/apps/discord/control.js stop",
+    "discord:status": "node dist/apps/discord/control.js status",
+    "discord:doctor": "node dist/apps/discord/doctor.js",
+    "agent:pair": "node dist/apps/discord/agent-cli.js pair",
+    "agent:start": "node dist/apps/discord/agent-cli.js start",
+    "agent:tunnel": "node dist/apps/discord/agent-tunnel.js",
+    "agent:package": "npm run build && node scripts/package-agent.mjs",
+    "vscode:package": "node scripts/package-vscode.mjs"
+  },
+  "dependencies": {
+    "@xterm/headless": "6.0.0",
+    "discord.js": "14.27.0",
+    "node-pty": "1.1.0",
+    "ssh2": "1.17.0"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.1",
+    "@types/ssh2": "1.15.6",
+    "typescript": "5.9.3"
+  }
+}

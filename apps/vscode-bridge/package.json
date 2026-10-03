@@ -1,0 +1,48 @@
+{
+  "name": "remote-operator-terminal",
+  "displayName": "Remote Operator Terminal",
+  "description": "Discover VS Code terminals locally and share selected sessions with the Discord bridge.",
+  "version": "0.1.7",
+  "publisher": "local-remote-operator",
+  "engines": {
+    "vscode": "^1.93.0"
+  },
+  "main": "./extension.cjs",
+  "extensionKind": [
+    "ui"
+  ],
+  "activationEvents": [
+    "onStartupFinished",
+    "onCommand:remoteOperator.shareTerminal",
+    "onCommand:remoteOperator.unshareTerminal"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": false
+    }
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "remoteOperator.shareTerminal",
+        "title": "Remote Operator: Share Terminal with Discord"
+      },
+      {
+        "command": "remoteOperator.unshareTerminal",
+        "title": "Remote Operator: Stop Sharing Terminal"
+      }
+    ],
+    "configuration": {
+      "title": "Remote Operator",
+      "properties": {
+        "remoteOperator.bridgeDirectory": {
+          "type": "string",
+          "default": "",
+          "scope": "machine",
+          "description": "Local bridge/agent state directory. Blank discovers the enrolled agent locator or existing local bridge. This extension runs on the UI host, including in Remote-SSH windows."
+        }
+      }
+    }
+  },
+  "license": "MIT"
+}
