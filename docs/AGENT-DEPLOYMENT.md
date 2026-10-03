@@ -13,6 +13,8 @@ The agent does not need the Discord token.
 4. Open a terminal in the directory containing `package.json`.
 5. Select an existing default project directory.
 
+Linux agent bundles also require tmux installed on the target machine.
+
 The bundle contains compiled application files and platform dependencies.
 It does not require cloning, `npm ci`, or a build step.
 It includes `.env.coordinator.example` for the password tunnel.
@@ -79,14 +81,21 @@ Do not expose the plain HTTP hub on a public interface.
    ```
 
 2. Obtain the coordinator fingerprint through an independent trusted channel.
-3. Verify that fingerprint before accepting its host key.
-4. Start the tunnel in a separate terminal.
+3. On the agent computer, open the first connection with an interactive host-key check.
+
+   ```sh
+   ssh -o StrictHostKeyChecking=ask coordinator exit
+   ```
+
+4. Compare the displayed fingerprint with the verified fingerprint.
+5. Accept the host key only if the fingerprints match.
+6. Start the tunnel in a separate terminal.
 
    ```sh
    ssh -N -o ExitOnForwardFailure=yes -o StrictHostKeyChecking=yes -L 127.0.0.1:8788:127.0.0.1:8787 coordinator
    ```
 
-5. Keep that tunnel process running.
+7. Keep that tunnel process running.
 
 Use [the SSH configuration example](https://github.com/lalaboomboom/DiscordRemote/blob/main/examples/ssh-config) as a template.
 The `coordinator` alias must identify your actual coordinator account and address.

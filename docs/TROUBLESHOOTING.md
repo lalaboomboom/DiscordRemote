@@ -14,7 +14,6 @@ Check the token, configured server ID, and bot membership.
 Only one coordinator may use that token and runtime state.
 The managed Linux launcher also needs tmux in its executable path.
 Set `TMUX_BIN` to an absolute executable path if necessary.
-Managed Linux startup requires Node in `/usr/local/bin`, `/usr/bin`, or `/bin`.
 The managed launcher uses the Node executable that runs the control command.
 If you use a version manager, activate Node before you run `npm run discord:up`.
 Do not kill the tmux server to restart the bot.
