@@ -218,6 +218,9 @@ test("the final send guard suppresses a post that waited across disconnect and r
 test("a timer state failure pauses delivery with a bounded log instead of an unhandled rejection", async t => {
   const f = fixture(), logs: string[] = [];
   t.mock.timers.enable({ apis: ["setInterval"] });
+  // Node 22 reports MockTimers' experimental warning asynchronously. Flush it
+  // before capturing application errors, whose count must remain exactly one.
+  await new Promise(resolve => setImmediate(resolve));
   t.mock.method(console, "error", (...values: unknown[]) => { logs.push(values.join(" ")); });
   try {
     await f.service.enable(f.target.channelId, threadId); await f.service.start();
